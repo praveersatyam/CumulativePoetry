@@ -1,6 +1,6 @@
 package com.poetry;
 
-import com.poetry.service.PoemReciter;
+import com.poetry.service.Poet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +11,23 @@ public class PoetryApplication {
         for (String arg : args) {
             inputArgs.add(arg);
         }
-        PoemReciter poemReciter = new PoemReciter();
-        int index = inputArgs.indexOf("--reveal-for-day");
+        Poet poet = new Poet();
         String resultPoem = "";
-        if (inputArgs.contains("--echo")) {
-            resultPoem = poemReciter.reciteEchoPoem(Integer.parseInt(inputArgs.get(index)));
-        } else {
-            resultPoem = poemReciter.reciteEchoPoem(Integer.parseInt(inputArgs.get(index)));
+        if(inputArgs.contains("--recite")){
+            if (inputArgs.contains("--echo")) {
+                resultPoem = poet.reciteEchoPoemForEachDay();
+            } else {
+                resultPoem = poet.recitePoemForEachDay();
+            }
+        }
+        if(inputArgs.contains("--reveal-for-day")){
+            int revealForDayIndexInArgs = inputArgs.indexOf("--reveal-for-day");
+            int day = Integer.parseInt(inputArgs.get(revealForDayIndexInArgs+1));
+            if (inputArgs.contains("--echo")) {
+                resultPoem = poet.reciteEchoPoem(day);
+            } else {
+                resultPoem = poet.recitePoem(day);
+            }
         }
         System.out.println(resultPoem);
     }
