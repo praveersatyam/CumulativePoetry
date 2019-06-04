@@ -2,14 +2,14 @@ package com.poetry.service;
 
 import com.poetry.constants.PoetryConstants;
 
-public class Poet {
+public class Poet extends AbstractPoet{
     public String recitePoem(int input) {
         String prefix = PoetryConstants.Poem.PRE_POEM;
         String[] linesOfPoems = PoetryConstants.Poem.POEM_LINES_ARRAY;
         String resultPoem = "";
         resultPoem += prefix + " ";
         for (int j = linesOfPoems.length - 1; j >= linesOfPoems.length - input; j--) {
-            resultPoem += linesOfPoems[j];
+            resultPoem += recite(linesOfPoems[j]);
         }
         return resultPoem;
     }
@@ -20,7 +20,7 @@ public class Poet {
         String resultPoem = "";
         resultPoem += prefix + " ";
         for (int j = linesOfPoems.length - 1; j >= linesOfPoems.length - input; j--) {
-            resultPoem += linesOfPoems[j] + linesOfPoems[j];
+            resultPoem += recite(linesOfPoems[j] + linesOfPoems[j]);
         }
         return resultPoem;
     }
