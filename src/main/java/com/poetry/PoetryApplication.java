@@ -1,6 +1,8 @@
 package com.poetry;
 
-import com.poetry.service.Poet;
+import com.poetry.constants.PoetryConstants;
+import com.poetry.service.EchoPoet;
+import com.poetry.service.NormalPoet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,22 +13,25 @@ public class PoetryApplication {
         for (String arg : args) {
             inputArgs.add(arg);
         }
-        Poet poet = new Poet();
         String resultPoem = "";
         if(inputArgs.contains("--recite")){
             if (inputArgs.contains("--echo")) {
-                resultPoem = poet.reciteEchoPoemForEachDay();
+                EchoPoet poet = new EchoPoet();
+                resultPoem = poet.reciteEchoPoemForEachDay(PoetryConstants.Poem.PRE_POEM, PoetryConstants.Poem.POEM_LINES_ARRAY);
             } else {
-                resultPoem = poet.recitePoemForEachDay();
+                NormalPoet poet = new NormalPoet();
+                resultPoem = poet.recitePoemForEachDay(PoetryConstants.Poem.PRE_POEM, PoetryConstants.Poem.POEM_LINES_ARRAY);
             }
         }
         if(inputArgs.contains("--reveal-for-day")){
             int revealForDayIndexInArgs = inputArgs.indexOf("--reveal-for-day");
             int day = Integer.parseInt(inputArgs.get(revealForDayIndexInArgs+1));
             if (inputArgs.contains("--echo")) {
-                resultPoem = poet.reciteEchoPoem(day);
+                EchoPoet poet = new EchoPoet();
+                resultPoem = poet.reciteEchoPoem(day, PoetryConstants.Poem.PRE_POEM, PoetryConstants.Poem.POEM_LINES_ARRAY);
             } else {
-                resultPoem = poet.recitePoem(day);
+                NormalPoet poet = new NormalPoet();
+                resultPoem = poet.recitePoem(day, PoetryConstants.Poem.PRE_POEM, PoetryConstants.Poem.POEM_LINES_ARRAY);
             }
         }
         System.out.println(resultPoem);
