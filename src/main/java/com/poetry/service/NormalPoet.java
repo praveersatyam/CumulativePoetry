@@ -1,6 +1,6 @@
 package com.poetry.service;
 
-public class NormalPoet extends AbstractPoet {
+public class NormalPoet extends Poet {
     public String recitePoem(int input, String prefix, String[] linesOfPoems) {
         write(prefix, linesOfPoems);
         resultPoem += prefix + " ";

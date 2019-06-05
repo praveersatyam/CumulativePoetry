@@ -3,7 +3,6 @@ package com.poetry;
 import com.poetry.constants.PoetryConstants;
 import com.poetry.service.EchoPoet;
 import com.poetry.service.NormalPoet;
-
 import java.util.ArrayList;
 import java.util.List;
 

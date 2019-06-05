@@ -1,6 +1,6 @@
 package com.poetry.service;
 
-public class EchoPoet extends AbstractPoet {
+public class EchoPoet extends Poet {
     public String reciteEchoPoem(int input, String prefix, String[] linesOfPoems) {
         write(prefix, linesOfPoems);
         resultPoem += prefix + " ";
